@@ -1,0 +1,31 @@
+apiversion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    apps: mysql
+spec: 
+  replicas: 1
+  selector:
+    matchlabels:
+       app: mysql
+    template:
+      metadata:
+         labels:
+           app: mysql
+      spec:
+        containers:
+        - name: mysql
+          image: hema0608/mysql:8.0.34
+          ports:
+          - containerPort: 3306
+          env:
+          - name: MYSQL_RANDOM_ROOT_PASSWORD
+            value: dbpass
+          - name: MYSQL_DATABASE 
+            value: mysqldb
+          - name: MYSQL_USER 
+            value: Hema
+          - name: MYSQL_PASSWORD 
+            value: admin@123
+    
